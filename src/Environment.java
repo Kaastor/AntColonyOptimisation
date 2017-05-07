@@ -1,13 +1,14 @@
 import lombok.Getter;
 
-import org.jgrapht.graph.DefaultWeightedEdge;
 import org.jgrapht.graph.SimpleWeightedGraph;
+
+import java.util.ArrayList;
 
 @Getter
 class Environment {
 
     private int vertexNumber;
-    private SimpleWeightedGraph<Integer, DefaultWeightedEdge> environment;
+    private SimpleWeightedGraph<Integer, Edge> environment;
 
     Environment(){
         vertexNumber = 5;
@@ -15,7 +16,7 @@ class Environment {
     }
 
     private void initEnvironment(){
-        environment = new SimpleWeightedGraph<>(DefaultWeightedEdge.class);
+        environment = new SimpleWeightedGraph<>(Edge.class);
 
         for(int i = 1 ; i <= vertexNumber ; i++){
             environment.addVertex(i);
@@ -24,28 +25,29 @@ class Environment {
     }
 
     private void addEdgesToVertices() {
-        Edge edge12 = new Edge();
+        Edge edge12 = new Edge(2);
         environment.addEdge(1,2, edge12);
-        environment.setEdgeWeight(edge12, 2);
 
-        Edge edge13 = new Edge();
+        Edge edge13 = new Edge(8);
         environment.addEdge(1,3, edge13);
-        environment.setEdgeWeight(edge13, 8);
 
-        Edge edge14 = new Edge();
+        Edge edge14 = new Edge(5);
         environment.addEdge(1,2, edge14);
-        environment.setEdgeWeight(edge14, 4);
 
-        Edge edge23 = new Edge();
+        Edge edge23 = new Edge(1);
         environment.addEdge(2,3, edge23);
-        environment.setEdgeWeight(edge23, 1);
 
-        Edge edge35 = new Edge();
+        Edge edge35 = new Edge(3);
         environment.addEdge(3,5, edge35);
-        environment.setEdgeWeight(edge35, 3);
 
-        Edge edge45 = new Edge();
+        Edge edge45 = new Edge(4);
         environment.addEdge(4,5, edge45);
-        environment.setEdgeWeight(edge45, 4);
     }
+
+    ArrayList<Edge> edgesOf(int vertexNumber) {
+        ArrayList<Edge> edges = new ArrayList<>();
+        edges.addAll(environment.edgesOf(vertexNumber));
+        return edges;
+    }
+
 }

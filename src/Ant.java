@@ -1,5 +1,5 @@
 
-public class Ant {
+class Ant {
 
 
 }

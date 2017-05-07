@@ -1,6 +1,8 @@
 public class AntColonyOptimisationApp {
 
     public static void main(String[] args) {
-        System.out.println("Hello Colony!");
+
+        Environment environment = new Environment();
+        System.out.println(environment.getEnvironment().toString());
     }
 }

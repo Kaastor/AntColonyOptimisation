@@ -1,3 +1,10 @@
+import java.util.ArrayList;
 
-public class AntColony {
+class AntColony {
+
+    private ArrayList<Ant> anthill;
+
+    AntColony(){
+        anthill = new ArrayList<>();
+    }
 }

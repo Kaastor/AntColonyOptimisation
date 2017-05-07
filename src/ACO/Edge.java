@@ -1,7 +1,11 @@
+package ACO;
+
 import lombok.Getter;
 import lombok.Setter;
 
 import org.jgrapht.graph.DefaultWeightedEdge;
+
+import static ACO.Parameters.pheromone0;
 
 @Getter @Setter
 class Edge extends DefaultWeightedEdge{
@@ -12,7 +16,7 @@ class Edge extends DefaultWeightedEdge{
 
     Edge(double length){
         this.length = length;
-        pheromoneValue = 1;
-        heuristicValue = 1;
+        pheromoneValue = pheromone0;
+        heuristicValue = 1.0/length;
     }
 }

@@ -1,3 +1,5 @@
+package ACO;
+
 import lombok.Getter;
 import lombok.Setter;
 
@@ -7,12 +9,14 @@ import java.util.ArrayList;
 class Ant {
 
     private int currentPosition;
+    private int finalPosition;
     private ArrayList<Edge> solutionPath;
     private ArrayList<Integer> visited;
     private double pathLength;
 
-    Ant(int startPosition){
+    Ant(int startPosition, int finalPosition){
         currentPosition = startPosition;
+        this.finalPosition = finalPosition;
         solutionPath = new ArrayList<>();
         visited.add(currentPosition);
         solutionPath = new ArrayList<>();

@@ -1,3 +1,5 @@
+package ACO;
+
 import lombok.Getter;
 
 import org.jgrapht.graph.SimpleWeightedGraph;

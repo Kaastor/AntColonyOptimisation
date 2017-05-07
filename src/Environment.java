@@ -24,27 +24,27 @@ class Environment {
     }
 
     private void addEdgesToVertices() {
-        DefaultWeightedEdge edge12 = new DefaultWeightedEdge();
+        Edge edge12 = new Edge();
         environment.addEdge(1,2, edge12);
         environment.setEdgeWeight(edge12, 2);
 
-        DefaultWeightedEdge edge13 = new DefaultWeightedEdge();
+        Edge edge13 = new Edge();
         environment.addEdge(1,3, edge13);
         environment.setEdgeWeight(edge13, 8);
 
-        DefaultWeightedEdge edge14 = new DefaultWeightedEdge();
+        Edge edge14 = new Edge();
         environment.addEdge(1,2, edge14);
         environment.setEdgeWeight(edge14, 4);
 
-        DefaultWeightedEdge edge23 = new DefaultWeightedEdge();
+        Edge edge23 = new Edge();
         environment.addEdge(2,3, edge23);
         environment.setEdgeWeight(edge23, 1);
 
-        DefaultWeightedEdge edge35 = new DefaultWeightedEdge();
+        Edge edge35 = new Edge();
         environment.addEdge(3,5, edge35);
         environment.setEdgeWeight(edge35, 3);
 
-        DefaultWeightedEdge edge45 = new DefaultWeightedEdge();
+        Edge edge45 = new Edge();
         environment.addEdge(4,5, edge45);
         environment.setEdgeWeight(edge45, 4);
     }

@@ -18,7 +18,7 @@ class Environment {
     private void initEnvironment(){
         environment = new SimpleWeightedGraph<>(Edge.class);
 
-        for(int i = 1 ; i <= vertexNumber ; i++){
+        for(int i = 1 ; i <= vertexNumber ; ++i){
             environment.addVertex(i);
         }
         addEdgesToVertices();

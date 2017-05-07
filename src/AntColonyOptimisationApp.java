@@ -6,9 +6,7 @@ public class AntColonyOptimisationApp {
 
         Environment environment = new Environment();
 
-        for(int i = 1 ; i < 6 ; i++){
             System.out.println(
-                    environment.edgesOf(i));
-        }
+                    environment.edgesOf(1).get(0));
     }
 }

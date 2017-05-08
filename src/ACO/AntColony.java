@@ -17,8 +17,8 @@ class AntColony {
     }
 
     private void initAnthill(){
-        for(int i = 0 ; i < numberOfAnts ; ++i){
-            anthill.add(new Ant(habitat, antsStartPosition, antsFinalPosition));
+        for(int i = 0; i < NUMBER_OF_ANTS; ++i){
+            anthill.add(new Ant(habitat));
         }
     }
 

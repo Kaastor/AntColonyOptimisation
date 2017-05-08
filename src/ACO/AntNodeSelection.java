@@ -42,7 +42,6 @@ class AntNodeSelection {
         ArrayList<Edge> possibleDirections = new ArrayList<>();
         for (Edge direction: habitat.edgesOf(currentPosition)) {
             if (!visited.contains(direction.getTargetVertex())) {
-                System.out.print(" " + direction + " ");
                 possibleDirections.add(direction);
             }
         }

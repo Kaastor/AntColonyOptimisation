@@ -6,6 +6,8 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.stream.IntStream;
 
+import static ACO.Parameters.ANTS_FINAL_POSITION;
+import static ACO.Parameters.ANTS_START_POSITION;
 import static ACO.Parameters.MAX_ITERATIONS;
 
 
@@ -19,9 +21,9 @@ class Ant {
     private double pathLength;
 
 
-    Ant(Environment habitat, int startPosition, int finalPosition){
-        currentPosition = startPosition;
-        this.finalPosition = finalPosition;
+    Ant(Environment habitat){
+        currentPosition = ANTS_START_POSITION;
+        this.finalPosition = ANTS_FINAL_POSITION;
         solutionPath = new ArrayList<>();
         visited = new ArrayList<>();
         visited.add(currentPosition);
@@ -47,7 +49,8 @@ class Ant {
             visitVertex(nextEdge.getTargetVertex(), nextEdge);
         }
         else{
-            System.out.print("NULL");
+            System.out.print("KONIEC TRASY, RESET.");
+            returnToAnthill();
         }
     }
 
@@ -73,7 +76,10 @@ class Ant {
         return length;
     }
 
-    void returnToAnthill(){
-
+    private void returnToAnthill(){
+        currentPosition = ANTS_START_POSITION;
+        solutionPath.clear();
+        visited.clear();
+        pathLength = 0.0;
     }
 }

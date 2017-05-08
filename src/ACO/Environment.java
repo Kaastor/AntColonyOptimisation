@@ -27,23 +27,13 @@ class Environment {
     }
 
     private void addEdgesToVertices() {
-        Edge edge12 = new Edge(1,2,2);
-        environment.addEdge(1,2, edge12);
+        environment.addEdge(1,2, new Edge(1,2,2));
+        environment.addEdge(1,3, new Edge(1,3,8));
+        environment.addEdge(1,4, new Edge(1,4,5));
+        environment.addEdge(2,3, new Edge(2,3,1));
+        environment.addEdge(3,5, new Edge(3,5,3));
+        environment.addEdge(4,5, new Edge(4,5,4));
 
-        Edge edge13 = new Edge(1,3,8);
-        environment.addEdge(1,3, edge13);
-
-        Edge edge14 = new Edge(1,4,5);
-        environment.addEdge(1,4, edge14);
-
-        Edge edge23 = new Edge(2,3,1);
-        environment.addEdge(2,3, edge23);
-
-        Edge edge35 = new Edge(3,5,3);
-        environment.addEdge(3,5, edge35);
-
-        Edge edge45 = new Edge(4,5,4);
-        environment.addEdge(4,5, edge45);
     }
 
     ArrayList<Edge> edgesOf(int vertexNumber) {

@@ -7,7 +7,6 @@ public class AntColonyOptimisationApp {
         Environment environment = new Environment();
         AntNodeSelection.setHabitat(environment);
 
-        System.out.println(environment.edgesOf(3));
         new AntColony(environment);
     }
 }

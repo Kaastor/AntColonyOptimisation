@@ -5,6 +5,7 @@ import lombok.Setter;
 
 import java.util.ArrayList;
 
+
 @Getter @Setter
 class Ant {
 
@@ -14,13 +15,18 @@ class Ant {
     private ArrayList<Integer> visited;
     private double pathLength;
 
-    Ant(int startPosition, int finalPosition){
+    private AntNodeSelection antNodeSelection;
+
+    Ant(Environment habitat, int startPosition, int finalPosition){
         currentPosition = startPosition;
         this.finalPosition = finalPosition;
         solutionPath = new ArrayList<>();
+        visited = new ArrayList<>();
         visited.add(currentPosition);
         solutionPath = new ArrayList<>();
         pathLength = 0;
+
+        antNodeSelection = new AntNodeSelection(habitat);
     }
 
     void visitVertex(int nextPosition, Edge edgeToVertex){
@@ -40,5 +46,16 @@ class Ant {
             length += edge.getLength();
         }
         return length;
+    }
+
+    void chooseNextVertex(){
+        int nextVertex = antNodeSelection.getNextVertex(currentPosition, visited);
+
+        System.out.println(nextVertex);
+    }
+
+
+    void returnToAnthill(){
+
     }
 }

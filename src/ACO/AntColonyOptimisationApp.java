@@ -5,8 +5,8 @@ public class AntColonyOptimisationApp {
     public static void main(String[] args) {
 
         Environment environment = new Environment();
+        AntColony antColony = new AntColony(environment);
 
-            System.out.println(
-                    environment.edgesOf(1).get(0));
+        antColony.startSearching();
     }
 }

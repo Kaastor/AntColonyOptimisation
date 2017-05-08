@@ -48,7 +48,10 @@ class Environment {
 
     ArrayList<Edge> edgesOf(int vertexNumber) {
         ArrayList<Edge> edges = new ArrayList<>();
-        edges.addAll(environment.edgesOf(vertexNumber));
+        for(Edge edge : environment.edgesOf(vertexNumber)){
+            if(edge.getTargetVertex()!=vertexNumber)
+                edges.add(edge);
+        }
         return edges;
     }
 

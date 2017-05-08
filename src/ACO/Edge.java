@@ -14,7 +14,7 @@ class Edge extends DefaultWeightedEdge{
     private int sourceVertex;
     private double pheromoneValue;
     private double heuristicValue;
-   private double length;
+    private double length;
 
     private double probabilityForAntK;
 

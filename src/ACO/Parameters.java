@@ -14,7 +14,7 @@ final class Parameters {
     static final double antFactor = 0.8;
     static final double randomFactor = 0.01;
 
-    static final int MAX_ITERATIONS = 1000;
+    static final int MAX_ITERATIONS = 5;
 }
 
 //PHEROMONE_0, alfa, beta -Ant Colony System: A Cooperative Learning Approach to the Traveling Salesman Problem - Dorigo, Gambardella

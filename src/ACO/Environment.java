@@ -6,10 +6,11 @@ import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.util.ArrayList;
 
+import static ACO.Parameters.VERTEX_NUMBER;
+
 @Getter
 class Environment {
 
-    private final int vertexNumber = 8;
     private SimpleWeightedGraph<Integer, Edge> environment;
 
     Environment(){
@@ -21,7 +22,7 @@ class Environment {
     private void initEnvironment(){
         environment = new SimpleWeightedGraph<>(Edge.class);
 
-        for(int i = 1 ; i <= vertexNumber ; ++i){
+        for(int i = 1 ; i <= VERTEX_NUMBER ; ++i){
             environment.addVertex(i);
         }
         addEdgesToVertices();
@@ -41,10 +42,10 @@ class Environment {
         environment.addEdge(6,4, new Edge(6,4,3));
         environment.addEdge(3,6, new Edge(3,6,4));
         environment.addEdge(6,3, new Edge(6,3,3));
-        environment.addEdge(3,7, new Edge(3,7,47));
-        environment.addEdge(5,8, new Edge(5,8,26));
+        environment.addEdge(3,7, new Edge(3,7,10));
+        environment.addEdge(5,8, new Edge(5,8,10));
         environment.addEdge(6,8, new Edge(6,8,13));
-        environment.addEdge(7,8, new Edge(7,8,34));
+        environment.addEdge(7,8, new Edge(7,8,1));
     }
 
     ArrayList<Edge> edgesOf(int vertexNumber) {

@@ -17,6 +17,7 @@ class Edge extends DefaultWeightedEdge{
     private double length;
 
     private double probabilityForAntK;
+    private double ACSComponent;
 
     Edge(int source, int target, double length){
         super();
@@ -26,5 +27,6 @@ class Edge extends DefaultWeightedEdge{
         pheromoneValue = PHEROMONE_0;
         heuristicValue = 1.0/length;
         probabilityForAntK = 0.0;
+        ACSComponent = 0.0;
     }
 }

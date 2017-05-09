@@ -20,7 +20,8 @@ class AntColonyOptimisationApp {
 
         System.out.println("Rozwiazanie - feromony: ");
         for(Edge edge : environment.getEnvironment().edgeSet()){
-            System.out.println("Rozwiazanie - feromon: " + edge + " " + edge.getPheromoneValue());
+            if(!BEST_PATH_SO_FAR.contains(edge))
+                System.out.println("Rozwiazanie - feromon: " + edge + " " + edge.getPheromoneValue());
         }
     }
 }

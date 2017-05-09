@@ -1,22 +1,73 @@
 package ACO;
 
 
+import dissimlab.random.SimGenerator;
 import lombok.Setter;
 
 import java.util.ArrayList;
 
 import static ACO.Parameters.ALPHA;
 import static ACO.Parameters.BETA;
+import static ACO.Parameters.q0;
 
 class AntNodeSelection {
 
-    @Setter  private static Environment habitat;
+    @Setter private static Environment habitat;
+    private static SimGenerator simGenerator = new SimGenerator();
     private static ArrayList<Edge> possibleChoices = new ArrayList<>();
 
 
     static Edge getNextVertex(int currentPosition, ArrayList<Integer> visited) {
-        calculateProbabilities(currentPosition, visited);
+        Edge nextEdgeACS = pseudoRandomProportionalRule(currentPosition, visited);
+        if(nextEdgeACS != null){
+            return nextEdgeACS;
+        }
+        else {
+            calculateProbabilities(currentPosition, visited);
+            return chooseNextEdge();
+        }
+    }
 
+    private static Edge pseudoRandomProportionalRule(int currentPosition, ArrayList<Integer> visited){
+        double q = simGenerator.uniform(0, 1);
+        if(q<=q0){
+            ArrayList<Edge> possibleDirections = getPossibleDirections(currentPosition, visited);
+            ArrayList<Edge> components = calculateACSTransitionRuleComponents(possibleDirections);
+            return maxFromComponents(components);
+        }
+        return null;
+    }
+
+    private static ArrayList<Edge> calculateACSTransitionRuleComponents(ArrayList<Edge> possibleDirections){
+        double component;
+        for (Edge direction: possibleDirections) {
+            component = direction.getPheromoneValue()*Math.pow(direction.getHeuristicValue(), BETA);
+            direction.setACSComponent(component);
+        }
+        return possibleDirections;
+    }
+
+    private static Edge maxFromComponents(ArrayList<Edge> components){
+        double maxComponent = 0.0;
+        Edge maxComponentEdge = null;
+        for(Edge component : components){
+            if(component.getACSComponent() > maxComponent){
+                maxComponent = component.getACSComponent();
+                maxComponentEdge = component;
+            }
+        }
+        return maxComponentEdge;
+    }
+
+    private static void calculateProbabilities(int currentPosition, ArrayList<Integer> visited){
+        ArrayList<Edge> possibleDirections = getPossibleDirections(currentPosition, visited);
+        double probabilitiesSum = probabilitiesSumForPossibleDirections(possibleDirections);
+        for (Edge direction: possibleDirections) {
+            possibleChoices.add(calculateProbabilityForEdge(direction, probabilitiesSum));
+        }
+    }
+
+    private static Edge chooseNextEdge(){
         double p = Math.random();
         double cumulativeProbability = 0.0;
         for (Edge nextEdge : possibleChoices) {
@@ -28,14 +79,6 @@ class AntNodeSelection {
         }
         possibleChoices.clear();
         return null;
-    }
-
-    private static void calculateProbabilities(int currentPosition, ArrayList<Integer> visited){
-        ArrayList<Edge> possibleDirections = getPossibleDirections(currentPosition, visited);
-        double probabilitiesSum = probabilitiesSumForPossibleDirections(possibleDirections);
-        for (Edge direction: possibleDirections) {
-            possibleChoices.add(calculateProbabilityForEdge(direction, probabilitiesSum));
-        }
     }
 
     private static ArrayList<Edge> getPossibleDirections(int currentPosition, ArrayList<Integer> visited){

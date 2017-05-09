@@ -15,6 +15,9 @@ class Environment {
     Environment(){
         vertexNumber = 5;
         initEnvironment();
+
+        AntNodeSelection.setHabitat(this);
+        AntUpdatePheromone.setHabitat(this);
     }
 
     private void initEnvironment(){
@@ -31,6 +34,7 @@ class Environment {
         environment.addEdge(1,3, new Edge(1,3,8));
         environment.addEdge(1,4, new Edge(1,4,5));
         environment.addEdge(2,3, new Edge(2,3,1));
+        environment.addEdge(3,1, new Edge(3,1,8));
         environment.addEdge(3,5, new Edge(3,5,3));
         environment.addEdge(4,5, new Edge(4,5,4));
 

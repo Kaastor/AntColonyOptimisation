@@ -26,7 +26,6 @@ class Ant {
         this.finalPosition = ANTS_FINAL_POSITION;
         solutionPath = new ArrayList<>();
         visited = new ArrayList<>();
-        visited.add(currentPosition);
         solutionPath = new ArrayList<>();
         pathLength = 0;
 
@@ -35,23 +34,43 @@ class Ant {
 
     private void antLife(){
         IntStream.range(1, MAX_ITERATIONS).forEach(epoch -> {
-            System.out.print(currentPosition + " ");
+            System.out.print(" TERAZ:" + currentPosition );
             visitNextVertex();
+
             System.out.println(" NEXT:" + currentPosition );
-            updateLocalPheromone();
+            AntUpdatePheromone.updateLocalPheromone();
         });
     }
 
     private void visitNextVertex(){
         Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
-
         if(nextEdge!=null) {
             visitVertex(nextEdge.getTargetVertex(), nextEdge);
+            if(currentPosition == finalPosition)
+                returnToAnthill();
         }
         else{
-            System.out.print("KONIEC TRASY, RESET.");
+            System.out.print("Koniec trasy, brak rozwiązania. Wracam. " + currentPosition);
             returnToAnthill();
         }
+    }
+
+    private void returnToAnthill(){
+        System.out.print("Jestem w rozwiązaniu. " + currentPosition);
+        currentPosition = ANTS_START_POSITION;
+        saveSolution();
+        AntUpdatePheromone.updateGlobalPheromone();
+        restart();
+    }
+
+    private void saveSolution(){
+
+    }
+
+    private void restart(){
+        solutionPath.clear();
+        visited.clear();
+        pathLength = 0.0;
     }
 
     private void visitVertex(int nextPosition, Edge edgeToVertex){
@@ -60,13 +79,6 @@ class Ant {
         currentPosition = nextPosition;
     }
 
-    private void updateLocalPheromone(){
-
-    }
-
-    private void updateGlobalPheromone(){
-
-    }
 
     double finalTrailLength(){
         double length = 0;
@@ -74,12 +86,5 @@ class Ant {
             length += edge.getLength();
         }
         return length;
-    }
-
-    private void returnToAnthill(){
-        currentPosition = ANTS_START_POSITION;
-        solutionPath.clear();
-        visited.clear();
-        pathLength = 0.0;
     }
 }

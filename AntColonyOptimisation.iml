@@ -9,5 +9,7 @@
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="jgrapht-core-1.0.0" level="project" />
     <orderEntry type="library" name="lombok" level="project" />
+    <orderEntry type="library" name="jgrapht" level="project" />
+    <orderEntry type="library" name="jgraph-5.13.0.0" level="project" />
   </component>
 </module>

@@ -4,11 +4,11 @@ package ACO;
 import java.util.ArrayList;
 
 final class Parameters {
-    static final int NUMBER_OF_ANTS = 1;
+    static final int NUMBER_OF_ANTS = 10;
     static final int ANTS_START_POSITION = 1;
-    static final int ANTS_FINAL_POSITION = 5;
-    static final int MAX_ITERATIONS = 20;
-    static final int longestVerticesNumberToDestination = 3;
+    static final int ANTS_FINAL_POSITION = 8;
+    static final int MAX_ITERATIONS = 100;
+    private static final int longestVerticesNumberToDestination = 5;
 
     static final double PHEROMONE_0 = Math.pow(longestVerticesNumberToDestination*7, -1);
     static final double ALPHA = 0.1;
@@ -18,7 +18,7 @@ final class Parameters {
     static double BEST_PATH_SO_FAR_LENGTH = 0;
     static ArrayList<Edge> BEST_PATH_SO_FAR = new ArrayList<>();
 
-    public static void setBestPathSoFar(ArrayList<Edge> bestPathSoFar) {
+    static void setBestPathSoFar(ArrayList<Edge> bestPathSoFar) {
         BEST_PATH_SO_FAR.clear();
         BEST_PATH_SO_FAR.addAll(bestPathSoFar);
     }

@@ -6,7 +6,7 @@ import static ACO.Parameters.*;
 
 class AntColony {
 
-    private ArrayList<Ant> anthill;
+    private final ArrayList<Ant> anthill;
 
 
     AntColony(){

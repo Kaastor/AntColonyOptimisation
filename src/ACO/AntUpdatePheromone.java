@@ -16,8 +16,6 @@ class AntUpdatePheromone {
     }
 
     static void updateGlobalPheromone(ArrayList<Edge> solutionPath){
-        System.out.print("Trasa końcowa " + BEST_PATH_SO_FAR);
-        System.out.print("Trasa końcowaDŁ " + BEST_PATH_SO_FAR_LENGTH);
         if(updateBestPath(solutionPath)) {
             for (Edge edge : solutionPath) {
                 double newPheromone = (1 - EVAPORATION) * edge.getPheromoneValue() +

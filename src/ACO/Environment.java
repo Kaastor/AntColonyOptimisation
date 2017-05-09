@@ -17,7 +17,6 @@ class Environment {
         initEnvironment();
 
         AntNodeSelection.setHabitat(this);
-        AntUpdatePheromone.setHabitat(this);
     }
 
     private void initEnvironment(){

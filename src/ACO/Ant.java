@@ -21,7 +21,7 @@ class Ant {
     private double pathLength;
 
 
-    Ant(Environment habitat){
+    Ant(){
         currentPosition = ANTS_START_POSITION;
         this.finalPosition = ANTS_FINAL_POSITION;
         solutionPath = new ArrayList<>();
@@ -34,16 +34,15 @@ class Ant {
 
     private void antLife(){
         IntStream.range(1, MAX_ITERATIONS).forEach(epoch -> {
+            Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
             System.out.print(" TERAZ:" + currentPosition );
-            visitNextVertex();
-
+            visitNextVertex(nextEdge);
             System.out.println(" NEXT:" + currentPosition );
-            AntUpdatePheromone.updateLocalPheromone();
+            AntUpdatePheromone.updateLocalPheromone(nextEdge);
         });
     }
 
-    private void visitNextVertex(){
-        Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
+    private void visitNextVertex(Edge nextEdge){
         if(nextEdge!=null) {
             visitVertex(nextEdge.getTargetVertex(), nextEdge);
             if(currentPosition == finalPosition)
@@ -55,23 +54,6 @@ class Ant {
         }
     }
 
-    private void returnToAnthill(){
-        System.out.print("Jestem w rozwiązaniu. " + currentPosition);
-        currentPosition = ANTS_START_POSITION;
-        saveSolution();
-        AntUpdatePheromone.updateGlobalPheromone();
-        restart();
-    }
-
-    private void saveSolution(){
-
-    }
-
-    private void restart(){
-        solutionPath.clear();
-        visited.clear();
-        pathLength = 0.0;
-    }
 
     private void visitVertex(int nextPosition, Edge edgeToVertex){
         solutionPath.add(edgeToVertex);
@@ -79,12 +61,18 @@ class Ant {
         currentPosition = nextPosition;
     }
 
+    private void returnToAnthill(){
 
-    double finalTrailLength(){
-        double length = 0;
-        for(Edge edge : solutionPath){
-            length += edge.getLength();
-        }
-        return length;
+        AntUpdatePheromone.updateGlobalPheromone(solutionPath);
+        System.out.print("Jestem w rozwiązaniu. " + currentPosition);
+        currentPosition = ANTS_START_POSITION;
+        restart();
+    }
+
+
+    private void restart(){
+        solutionPath.clear();
+        visited.clear();
+        pathLength = 0.0;
     }
 }

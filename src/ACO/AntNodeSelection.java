@@ -30,7 +30,7 @@ class AntNodeSelection {
 
     private static Edge pseudoRandomProportionalRule(int currentPosition, ArrayList<Integer> visited){
         double q = simGenerator.uniform(0, 1);
-        if(q<=q0){
+        if(q<q0){
             ArrayList<Edge> possibleDirections = getPossibleDirections(currentPosition, visited);
             ArrayList<Edge> components = calculateACSTransitionRuleComponents(possibleDirections);
             return maxFromComponents(components);

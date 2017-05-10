@@ -32,8 +32,8 @@ class Environment {
         environment.addEdge(1,2, new Edge(1,2,5));
         environment.addEdge(1,3, new Edge(1,3,8));
         environment.addEdge(2,5, new Edge(2,5,18));
-        environment.addEdge(3,4, new Edge(3,4,9));
-        environment.addEdge(4,3, new Edge(4,3,9));
+        environment.addEdge(3,4, new Edge(3,4,2));
+        environment.addEdge(4,3, new Edge(4,3,2));
         environment.addEdge(4,5, new Edge(4,5,9));
         environment.addEdge(5,4, new Edge(5,4,9));
         environment.addEdge(5,6, new Edge(5,6,7));

@@ -5,18 +5,17 @@ import java.util.ArrayList;
 
 final class Parameters {
     static final int VERTEX_NUMBER = 8;
-    static final int NUMBER_OF_ANTS = 10;
+    static final int NUMBER_OF_ANTS = 20;
     static final int ANTS_START_POSITION = 1;
     static final int ANTS_FINAL_POSITION = 8;
-    static final int MAX_ITERATIONS = 100;
+    static final int MAX_ITERATIONS = 2000;
     private static final int averagePathLenghtToDestination = 25;
 
-    static final double INIT_PHEROMONE = 1;
     static final double PHEROMONE_0 = Math.pow(averagePathLenghtToDestination*VERTEX_NUMBER, -1);
     static final double ALPHA = 0.1;
     static final double BETA = 2;
     static final double EVAPORATION = 0.1;
-    static final double q0 = 0.9;
+    static final double q0 = 0.8;
     static double BEST_PATH_SO_FAR_LENGTH = 0;
     static ArrayList<Edge> BEST_PATH_SO_FAR = new ArrayList<>();
 

@@ -23,7 +23,6 @@ class AntUpdatePheromone {
                 edge.setPheromoneValue(newPheromone);
             }
         }
-
     }
 
     private static boolean updateBestPath(ArrayList<Edge> solutionPath){

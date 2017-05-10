@@ -31,6 +31,7 @@ class Environment {
     private void addEdgesToVertices() {
         environment.addEdge(1,2, new Edge(1,2,5));
         environment.addEdge(1,3, new Edge(1,3,8));
+        environment.addEdge(1,4, new Edge(1,4,3));
         environment.addEdge(2,5, new Edge(2,5,1));
         environment.addEdge(3,4, new Edge(3,4,2));
         environment.addEdge(4,3, new Edge(4,3,2));

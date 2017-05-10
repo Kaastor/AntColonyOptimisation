@@ -31,6 +31,7 @@ final class Parameters {
     static void clearBestSeparablePaths(){
         BEST_SEPARABLE_PATHS.clear();
     }
+
     static void addBestSeparablePath(ArrayList<Edge> bestSeparablePath) {
         BEST_SEPARABLE_PATHS.add(new ArrayList<>(bestSeparablePath));
     }

@@ -1,7 +1,6 @@
 package ACO;
 
-import static ACO.Parameters.BEST_PATH_SO_FAR;
-import static ACO.Parameters.BEST_PATH_SO_FAR_LENGTH;
+import static ACO.Parameters.*;
 
 class AntColonyOptimisationApp {
 
@@ -23,5 +22,8 @@ class AntColonyOptimisationApp {
             if(!BEST_PATH_SO_FAR.contains(edge))
                 System.out.println("Rozwiazanie - feromon: " + edge + " " + edge.getPheromoneValue());
         }
+
+        System.out.println("Rozwiazanie - ścieżki: ");
+        System.out.println(getBestSeparablePaths());
     }
 }

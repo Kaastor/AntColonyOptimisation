@@ -35,9 +35,7 @@ class Ant {
     private void antLife(){
         IntStream.range(1, MAX_ITERATIONS).forEach(epoch -> {
             Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
-//            System.out.print(" TERAZ:" + currentPosition );
             visitNextVertex(nextEdge);
-//            System.out.println(" NEXT:" + currentPosition );
             AntUpdatePheromone.updateLocalPheromone(nextEdge);
         });
     }
@@ -49,11 +47,9 @@ class Ant {
                 returnToAnthill();
         }
         else{
-//            System.out.print("Koniec trasy, brak rozwiązania. Wracam. " + currentPosition);
             returnToAnthill();
         }
     }
-
 
     private void visitVertex(int nextPosition, Edge edgeToVertex){
         solutionPath.add(edgeToVertex);
@@ -62,13 +58,10 @@ class Ant {
     }
 
     private void returnToAnthill(){
-
         AntUpdatePheromone.updateGlobalPheromone(solutionPath);
-//        System.out.print("Jestem w rozwiązaniu. " + currentPosition);
         currentPosition = ANTS_START_POSITION;
         restart();
     }
-
 
     private void restart(){
         solutionPath.clear();

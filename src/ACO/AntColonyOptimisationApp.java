@@ -27,9 +27,11 @@ public class AntColonyOptimisationApp extends Application{
 
     @Override
     public void start(Stage primaryStage) {
-
         ACO();
+//        ACOVisualisation(primaryStage);
+    }
 
+    private void ACOVisualisation(Stage primaryStage){
         primaryStage.setTitle("Ant Colony System for separable SPP");
         Group root = new Group();
         Canvas canvas = new Canvas(1000, 1000);
@@ -38,7 +40,6 @@ public class AntColonyOptimisationApp extends Application{
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-
     }
     private void ACO(){
         this.environment = new Environment();
@@ -52,7 +53,7 @@ public class AntColonyOptimisationApp extends Application{
         gc.setFill(Color.GRAY);
         gc.fillRect(0, 0, 1000, 1000);
         gc.setFill(Color.DARKGREEN);
-        gc.setStroke(Color.BLACK);
+        gc.setStroke(Color.WHITESMOKE);
         gc.setLineWidth(3);
 
         for(int i = 0 ; i < VERTEX_NUMBER ; ++i){
@@ -75,7 +76,6 @@ public class AntColonyOptimisationApp extends Application{
         gc.setFill(Color.RED);
         gc.fillOval(nodes.get(ANTS_FINAL_POSITION-1).x, nodes.get(ANTS_FINAL_POSITION-1).y, 30, 30);
 
-
         for(ArrayList<Edge> edges : getBestSeparablePaths()){
             gc.setStroke(Color.color(simGenerator.uniform(0,1),
                     simGenerator.uniform(0,1),
@@ -85,6 +85,17 @@ public class AntColonyOptimisationApp extends Application{
                         nodes.get(edge.getSourceVertex()-1).y+15,
                         nodes.get(edge.getTargetVertex()-1).x+15,
                         nodes.get(edge.getTargetVertex()-1).y+15);
+            }
+        }
+
+        double midPointX;
+        double midPointY;
+        for(int i = 0 ; i < nodes.size() ; ++i){
+            for(Edge edge : environment.getEnvironment().edgesOf(i+1)){
+                midPointX = (nodes.get(edge.getSourceVertex()-1).x+15 + nodes.get(edge.getTargetVertex()-1).x+15) / 2;
+                midPointY = (nodes.get(edge.getSourceVertex()-1).y+15 + nodes.get(edge.getTargetVertex()-1).y+15) / 2;
+                gc.setFill(Color.BLACK);
+                gc.fillText(((Double) edge.getLength()).toString(), midPointX, midPointY);
             }
         }
     }

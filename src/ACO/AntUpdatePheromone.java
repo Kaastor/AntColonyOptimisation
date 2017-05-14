@@ -56,7 +56,6 @@ class AntUpdatePheromone {
         addBestSeparablePath(solutionPath);
     }
 
-    @Synchronized
     private static boolean isSeparable(ArrayList<Edge> solutionPath) {
         int numberOfTheSameEdges = 0;
         for (ArrayList<Edge> separablePath : getBestSeparablePaths()) {
@@ -68,12 +67,10 @@ class AntUpdatePheromone {
         return (numberOfTheSameEdges == 0);
     }
 
-
     private static double deltaPheromone(){
         return 1/BEST_PATH_SO_FAR_LENGTH;
     }
 
-    @Synchronized
     private static double finalTrailLength(ArrayList<Edge> solutionPath){
         double length = 0;
         for(Edge edge : solutionPath){

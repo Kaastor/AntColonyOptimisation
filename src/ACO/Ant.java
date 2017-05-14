@@ -21,8 +21,6 @@ class Ant extends Thread{
     private ArrayList<Integer> visited;
     private double pathLength;
 
-    private int numberOfTimesPheromoneUpdate = 0;
-
     Ant(int agentId){
         this.agentId = agentId;
         currentPosition = ANTS_START_POSITION;
@@ -38,7 +36,6 @@ class Ant extends Thread{
             Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
             visitNextVertex(nextEdge);
             AntUpdatePheromone.updateLocalPheromone(nextEdge);
-            numberOfTimesPheromoneUpdate+=1;
         });
     }
 

@@ -25,6 +25,7 @@ public class AntColonyOptimisationApp extends Application{
 
     @SneakyThrows
     public static void main(String[] args) {
+        long startTime   = System.currentTimeMillis();
         environment = new Environment();
         AntColony antColony = new AntColony();
 
@@ -35,7 +36,12 @@ public class AntColonyOptimisationApp extends Application{
         System.out.println("Rozwiazanie - ścieżki: ");
         System.out.println(getBestSeparablePaths());
 
-        launch(args);
+//        launch(args);
+        long endTime   = System.currentTimeMillis();
+        long totalTime = endTime - startTime;
+        System.out.println(totalTime);
+
+        System.exit(1);
     }
 
     @Override

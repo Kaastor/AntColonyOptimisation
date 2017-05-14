@@ -8,7 +8,7 @@ import java.util.Set;
 
 final class Parameters {
     static final int VERTEX_NUMBER = 8;
-    static final int NUMBER_OF_ANTS = 30;
+    static final int NUMBER_OF_ANTS = 5000;
     static final int ANTS_START_POSITION = 1;
     static final int ANTS_FINAL_POSITION = 8;
     static final int MAX_ITERATIONS = 2500;
@@ -20,7 +20,7 @@ final class Parameters {
     static final double EVAPORATION = 0.1;
     static final double q0 = 0.7;
     static double BEST_PATH_SO_FAR_LENGTH = 0;
-    static ArrayList<Edge> BEST_PATH_SO_FAR = new ArrayList<>();
+    private static ArrayList<Edge> BEST_PATH_SO_FAR = new ArrayList<>();
     private static Set<ArrayList<Edge>> BEST_SEPARABLE_PATHS = new HashSet<>();
 
     static void setBestPathSoFar(ArrayList<Edge> bestPathSoFar) {

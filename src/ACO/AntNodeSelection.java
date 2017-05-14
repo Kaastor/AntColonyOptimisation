@@ -68,7 +68,6 @@ class AntNodeSelection {
         }
     }
 
-    @Synchronized
     private static Edge chooseNextEdge(){
         double p = Math.random();
         double cumulativeProbability = 0.0;

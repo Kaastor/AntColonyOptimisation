@@ -3,6 +3,7 @@ package ACO;
 
 import dissimlab.random.SimGenerator;
 import lombok.Setter;
+import lombok.Synchronized;
 
 import java.util.ArrayList;
 
@@ -16,7 +17,7 @@ class AntNodeSelection {
     private static SimGenerator simGenerator = new SimGenerator();
     private static ArrayList<Edge> possibleChoices = new ArrayList<>();
 
-
+    @Synchronized
     static Edge getNextVertex(int currentPosition, ArrayList<Integer> visited) {
         Edge nextEdgeACS = pseudoRandomProportionalRule(currentPosition, visited);
         if(nextEdgeACS != null){
@@ -67,6 +68,7 @@ class AntNodeSelection {
         }
     }
 
+    @Synchronized
     private static Edge chooseNextEdge(){
         double p = Math.random();
         double cumulativeProbability = 0.0;

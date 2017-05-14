@@ -1,6 +1,8 @@
 package ACO;
 
 
+import lombok.Synchronized;
+
 import java.util.ArrayList;
 
 import static ACO.Parameters.*;
@@ -15,6 +17,7 @@ class AntUpdatePheromone {
         }
     }
 
+    @Synchronized
     static void updateGlobalPheromone(ArrayList<Edge> solutionPath){
         if(updateBestPath(solutionPath)) {
             for (Edge edge : solutionPath) {
@@ -53,6 +56,7 @@ class AntUpdatePheromone {
         addBestSeparablePath(solutionPath);
     }
 
+    @Synchronized
     private static boolean isSeparable(ArrayList<Edge> solutionPath) {
         int numberOfTheSameEdges = 0;
         for (ArrayList<Edge> separablePath : getBestSeparablePaths()) {
@@ -69,6 +73,7 @@ class AntUpdatePheromone {
         return 1/BEST_PATH_SO_FAR_LENGTH;
     }
 
+    @Synchronized
     private static double finalTrailLength(ArrayList<Edge> solutionPath){
         double length = 0;
         for(Edge edge : solutionPath){

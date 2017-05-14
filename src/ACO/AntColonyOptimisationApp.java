@@ -9,6 +9,8 @@ import javafx.scene.canvas.GraphicsContext;
 import javafx.stage.Stage;
 
 import javafx.scene.paint.Color;
+import lombok.SneakyThrows;
+
 import java.awt.*;
 import java.util.ArrayList;
 
@@ -19,16 +21,26 @@ public class AntColonyOptimisationApp extends Application{
 
     private SimGenerator simGenerator = new SimGenerator(generateSeed());
     private ArrayList<Point> nodes = new ArrayList<>();
-    private Environment environment;
+    private static Environment environment;
 
+    @SneakyThrows
     public static void main(String[] args) {
+        environment = new Environment();
+        AntColony antColony = new AntColony();
+
+        for (Ant ant : antColony.getAnthill()) {
+            ant.join();
+        }
+        System.out.println("Rozwiazanie - długość: " + BEST_PATH_SO_FAR_LENGTH);
+        System.out.println("Rozwiazanie - ścieżki: ");
+        System.out.println(getBestSeparablePaths());
+
         launch(args);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        ACO();
-//        ACOVisualisation(primaryStage);
+        ACOVisualisation(primaryStage);
     }
 
     private void ACOVisualisation(Stage primaryStage){
@@ -40,13 +52,6 @@ public class AntColonyOptimisationApp extends Application{
         root.getChildren().add(canvas);
         primaryStage.setScene(new Scene(root));
         primaryStage.show();
-    }
-    private void ACO(){
-        this.environment = new Environment();
-        new AntColony();
-        System.out.println("Rozwiazanie - długość: " + BEST_PATH_SO_FAR_LENGTH);
-        System.out.println("Rozwiazanie - ścieżki: ");
-        System.out.println(getBestSeparablePaths());
     }
 
     private void drawShapes(GraphicsContext gc) {

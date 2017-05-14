@@ -12,31 +12,33 @@ import static ACO.Parameters.MAX_ITERATIONS;
 
 
 @Getter @Setter
-class Ant {
+class Ant extends Thread{
 
+    private int agentId;
     private int currentPosition;
     private int finalPosition;
     private ArrayList<Edge> solutionPath;
     private ArrayList<Integer> visited;
     private double pathLength;
 
+    private int numberOfTimesPheromoneUpdate = 0;
 
-    Ant(){
+    Ant(int agentId){
+        this.agentId = agentId;
         currentPosition = ANTS_START_POSITION;
         this.finalPosition = ANTS_FINAL_POSITION;
         solutionPath = new ArrayList<>();
         visited = new ArrayList<>();
         solutionPath = new ArrayList<>();
         pathLength = 0;
-
-        antLife();
     }
 
-    private void antLife(){
-        IntStream.range(1, MAX_ITERATIONS).forEach(epoch -> {
+    public void run(){
+        IntStream.range(1, MAX_ITERATIONS).forEach(episode -> {
             Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
             visitNextVertex(nextEdge);
             AntUpdatePheromone.updateLocalPheromone(nextEdge);
+            numberOfTimesPheromoneUpdate+=1;
         });
     }
 
@@ -44,10 +46,10 @@ class Ant {
         if(nextEdge!=null) {
             visitVertex(nextEdge.getTargetVertex(), nextEdge);
             if(currentPosition == finalPosition)
-                returnToAnthill();
+                returnToAnthill(nextEdge);
         }
         else{
-            returnToAnthill();
+            returnToAnthill(nextEdge);
         }
     }
 
@@ -57,8 +59,9 @@ class Ant {
         currentPosition = nextPosition;
     }
 
-    private void returnToAnthill(){
-        AntUpdatePheromone.updateGlobalPheromone(solutionPath);
+    private void returnToAnthill(Edge nextEdge){
+        if(nextEdge != null)
+            AntUpdatePheromone.updateGlobalPheromone(solutionPath);
         currentPosition = ANTS_START_POSITION;
         restart();
     }

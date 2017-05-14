@@ -8,10 +8,10 @@ import java.util.Set;
 
 final class Parameters {
     static final int VERTEX_NUMBER = 8;
-    static final int NUMBER_OF_ANTS = 20;
+    static final int NUMBER_OF_ANTS = 30;
     static final int ANTS_START_POSITION = 1;
     static final int ANTS_FINAL_POSITION = 8;
-    static final int MAX_ITERATIONS = 2000;
+    static final int MAX_ITERATIONS = 2500;
     private static final int averagePathLenghtToDestination = 25;
 
     static final double PHEROMONE_0 = Math.pow(averagePathLenghtToDestination*VERTEX_NUMBER, -1);

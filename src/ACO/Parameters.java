@@ -8,7 +8,7 @@ import java.util.Set;
 
 final class Parameters {
     static final int VERTEX_NUMBER = 8;
-    static final int NUMBER_OF_ANTS = 5000;
+    static final int NUMBER_OF_ANTS = 50;
     static final int ANTS_START_POSITION = 1;
     static final int ANTS_FINAL_POSITION = 8;
     static final int MAX_ITERATIONS = 2500;

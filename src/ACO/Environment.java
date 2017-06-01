@@ -2,16 +2,13 @@ package ACO;
 
 import lombok.Getter;
 
-import org.jgrapht.DirectedGraph;
 import org.jgrapht.graph.SimpleDirectedGraph;
-import org.jgrapht.graph.SimpleWeightedGraph;
-
-import java.util.ArrayList;
-import java.util.Set;
 
 import static ACO.Parameters.VERTEX_NUMBER;
 
+
 @Getter
+@SuppressWarnings("unchecked")
 class Environment {
 
     private SimpleDirectedGraph<Integer, Edge> environment;
@@ -29,8 +26,7 @@ class Environment {
         }
         addEdgesToVertices();
 
-//        System.out.println(getEnvironment().edgeSet().toString());
-//        environment = new EnvironmentGenerator(7).generate();
+//        environment = new EnvironmentGenerator().generate();
     }
 
 

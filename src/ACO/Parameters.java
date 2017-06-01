@@ -1,14 +1,13 @@
 package ACO;
 
-
-
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 final class Parameters {
+    //vertices numerated from 1.
     static final int VERTEX_NUMBER = 8;
-    static final int NUMBER_OF_ANTS = 1;
+    static final int NUMBER_OF_ANTS = 20;
     static final int ANTS_START_POSITION = 1;
     static final int ANTS_FINAL_POSITION = 8;
     static final int MAX_ITERATIONS = 3000;

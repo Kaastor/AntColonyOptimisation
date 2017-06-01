@@ -2,69 +2,68 @@ package ACO;
 
 import dissimlab.random.SimGenerator;
 import lombok.Getter;
-import org.jgrapht.graph.SimpleWeightedGraph;
+import org.jgrapht.graph.SimpleDirectedGraph;
 
-import java.util.ArrayList;
 
 import static ACO.Parameters.MAX_EDGE_WEIGHT;
+import static ACO.Parameters.VERTEX_NUMBER;
 
 @Getter
-@SuppressWarnings("unchecked")
 class EnvironmentGenerator {
 
-    private int verticesNumber;
     private SimGenerator simGenerator;
-    private SimpleWeightedGraph<Integer, Edge> generatedGraph;
+    private SimpleDirectedGraph<Integer, Edge> generatedGraph;
     private double[][] weights;
-    private ArrayList<Integer> vertices;
 
-    EnvironmentGenerator(int verticesNumber){
-        this.verticesNumber = verticesNumber;
+    EnvironmentGenerator(){
         this.simGenerator = new SimGenerator();
-        this.generatedGraph = new SimpleWeightedGraph<>(Edge.class);
+        this.weights = new double[VERTEX_NUMBER][VERTEX_NUMBER];
+        this.generatedGraph = new SimpleDirectedGraph<>(Edge.class);
+        generate();
     }
 
-    SimpleWeightedGraph generate(){
-        vertices = generateVertices();
-        weights = generateAdjacencyMatrix();
+    SimpleDirectedGraph generate(){
+        generateVertices();
+        generateAdjacencyMatrix();
         generateEdges();
         return generatedGraph;
     }
 
-    private double[][] generateAdjacencyMatrix(){
-        double[][] weights = new double[verticesNumber][verticesNumber];
-        for (int i=0; i<verticesNumber; i++) {
-            for (int j=i; j<verticesNumber; j++) {
-                if(simGenerator.uniform(0,1) < 0.5){
+    private void generateAdjacencyMatrix(){
+        for (int i=0; i<VERTEX_NUMBER; i++) {
+            for (int j=i; j<VERTEX_NUMBER; j++) {
+                if(simGenerator.uniform(0,1) < 0.35){
                     weights[i][j] = simGenerator.uniform(1, MAX_EDGE_WEIGHT);
+                }
+                else{
+                    weights[i][j] = 0.0;
                 }
             }
         }
-        for (int i=0; i< verticesNumber; i++) {
+        for (int i=0; i< VERTEX_NUMBER; i++) {
            weights[i][i] = 0;
         }
-//        for (int i=0; i<verticesNumber; i++) {
-//            for (int j = 0; j < verticesNumber; j++) {
+//        for (int i=0; i<VERTEX_NUMBER; i++) {
+//            for (int j = 0; j < VERTEX_NUMBER; j++) {
 //                System.out.print(weights[i][j] + ", ");
 //            }
 //            System.out.println();
 //        }
-        return  weights;
     }
 
-    private ArrayList<Integer> generateVertices(){
-        ArrayList<Integer> randomVertices = new ArrayList<>();
-        for (int i =0 ; i < verticesNumber ; i++) {
-            randomVertices.add(i);
+    private void generateVertices(){
+        for (int i =1 ; i <= VERTEX_NUMBER ; i++) {
+            generatedGraph.addVertex(i);
         }
-        return  randomVertices;
     }
 
     private void generateEdges(){
-        for (int i=0; i<verticesNumber; i++) {
-            for (int j = 0; j < verticesNumber; j++) {
-                if(weights[i][j] != 0.0){
-
+        for (int i=0; i<VERTEX_NUMBER; i++) {
+            for (int j = i; j < VERTEX_NUMBER; j++) {
+                Double weight = weights[i][j];
+                if(!weight.equals(0.0)){
+                    generatedGraph.addEdge(i+1,j+1, new Edge(i+1,j+1,weights[i][j] ));
+                    generatedGraph.addEdge(j+1,i+1, new Edge(j+1,i+1,weights[i][j] ));
                 }
             }
         }

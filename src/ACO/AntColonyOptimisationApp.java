@@ -48,8 +48,8 @@ public class AntColonyOptimisationApp extends Application{
 //        matrixExporter.exportGraph(environment.getEnvironment(), new File("matrix.txt"));
 //        System.out.println((environment.getEnvironment().getEdge(1,3).getLength()));
 
-//        launch(args);
-        long endTime   = System.currentTimeMillis();
+        launch(args);
+        long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
         System.out.println(totalTime);
 

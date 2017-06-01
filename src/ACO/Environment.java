@@ -2,31 +2,37 @@ package ACO;
 
 import lombok.Getter;
 
+import org.jgrapht.DirectedGraph;
+import org.jgrapht.graph.SimpleDirectedGraph;
 import org.jgrapht.graph.SimpleWeightedGraph;
 
 import java.util.ArrayList;
+import java.util.Set;
 
 import static ACO.Parameters.VERTEX_NUMBER;
 
 @Getter
 class Environment {
 
-    private SimpleWeightedGraph<Integer, Edge> environment;
+    private SimpleDirectedGraph<Integer, Edge> environment;
 
     Environment(){
         initEnvironment();
-
         AntNodeSelection.setHabitat(this);
     }
 
-    private void initEnvironment(){
-        environment = new SimpleWeightedGraph<>(Edge.class);
+    private void initEnvironment() {
+        environment = new SimpleDirectedGraph<>(Edge.class);
 
-        for(int i = 1 ; i <= VERTEX_NUMBER ; ++i){
+        for (int i = 1; i <= VERTEX_NUMBER; ++i) {
             environment.addVertex(i);
         }
         addEdgesToVertices();
+
+//        System.out.println(getEnvironment().edgeSet().toString());
+//        environment = new EnvironmentGenerator(7).generate();
     }
+
 
     private void addEdgesToVertices() {
         environment.addEdge(1,2, new Edge(1,2,5));
@@ -38,6 +44,8 @@ class Environment {
         environment.addEdge(2,5, new Edge(2,5,1));
         environment.addEdge(5,2, new Edge(5,2,1));
         environment.addEdge(2,6, new Edge(2,6,1));
+        environment.addEdge(6,2, new Edge(6,2,1));
+        environment.addEdge(6,2, new Edge(2,6,1));
         environment.addEdge(3,4, new Edge(3,4,2));
         environment.addEdge(4,3, new Edge(4,3,2));
         environment.addEdge(4,5, new Edge(4,5,9));
@@ -47,21 +55,12 @@ class Environment {
         environment.addEdge(4,6, new Edge(4,6,3));
         environment.addEdge(6,4, new Edge(6,4,3));
         environment.addEdge(3,6, new Edge(3,6,4));
-        environment.addEdge(6,3, new Edge(6,3,3));
+        environment.addEdge(6,3, new Edge(6,3,4));
         environment.addEdge(3,7, new Edge(3,7,10));
-        environment.addEdge(5,8, new Edge(5,8,13));
+        environment.addEdge(5,8, new Edge(5,8,10));
         environment.addEdge(6,8, new Edge(6,8,13));
         environment.addEdge(7,8, new Edge(7,8,1));
 
-    }
-
-    ArrayList<Edge> edgesOf(int vertexNumber) {
-        ArrayList<Edge> edges = new ArrayList<>();
-        for(Edge edge : environment.edgesOf(vertexNumber)){
-            if(edge.getTargetVertex()!=vertexNumber)
-                edges.add(edge);
-        }
-        return edges;
     }
 
 }

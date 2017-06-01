@@ -34,6 +34,7 @@ class Ant extends Thread{
     public void run(){
         IntStream.range(1, MAX_ITERATIONS).forEach(episode -> {
             Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
+
             visitNextVertex(nextEdge);
             AntUpdatePheromone.updateLocalPheromone(nextEdge);
         });
@@ -59,6 +60,7 @@ class Ant extends Thread{
     private void returnToAnthill(Edge nextEdge){
         if(nextEdge != null)
             AntUpdatePheromone.updateGlobalPheromone(solutionPath);
+
         currentPosition = ANTS_START_POSITION;
         restart();
     }

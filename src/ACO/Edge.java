@@ -29,4 +29,5 @@ class Edge extends DefaultWeightedEdge{
         probabilityForAntK = 0.0;
         ACSComponent = 0.0;
     }
+
 }

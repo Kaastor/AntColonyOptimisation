@@ -5,6 +5,7 @@ import lombok.Getter;
 import org.jgrapht.graph.SimpleDirectedGraph;
 
 
+import static ACO.Parameters.MAX_CONNECTIONS_BETWEEN_NODES;
 import static ACO.Parameters.MAX_EDGE_WEIGHT;
 import static ACO.Parameters.VERTEX_NUMBER;
 
@@ -31,13 +32,10 @@ class EnvironmentGenerator {
 
     private void generateAdjacencyMatrix(){
         for (int i=0; i<VERTEX_NUMBER; i++) {
+            int connectionNumber = 0;
             for (int j=i; j<VERTEX_NUMBER; j++) {
-                if(simGenerator.uniform(0,1) < 0.35){
-                    weights[i][j] = simGenerator.uniform(1, MAX_EDGE_WEIGHT);
-                }
-                else{
-                    weights[i][j] = 0.0;
-                }
+                weights[i][j] = simGenerator.uniform(1, MAX_EDGE_WEIGHT);
+                if(++connectionNumber==MAX_CONNECTIONS_BETWEEN_NODES) break;
             }
         }
         for (int i=0; i< VERTEX_NUMBER; i++) {

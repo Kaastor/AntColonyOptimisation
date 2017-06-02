@@ -19,14 +19,21 @@ class Environment {
     }
 
     private void initEnvironment() {
+        createEnvironment();
+
+    }
+
+    private void createEnvironment(){
         environment = new SimpleDirectedGraph<>(Edge.class);
 
         for (int i = 1; i <= VERTEX_NUMBER; ++i) {
             environment.addVertex(i);
         }
         addEdgesToVertices();
+    }
 
-//        environment = new EnvironmentGenerator().generate();
+    void generateEnvironment(){
+        environment = new EnvironmentGenerator().generate();
     }
 
 

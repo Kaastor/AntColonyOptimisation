@@ -10,11 +10,8 @@ import javafx.stage.Stage;
 
 import javafx.scene.paint.Color;
 import lombok.SneakyThrows;
-import org.jgrapht.Graph;
 import org.jgrapht.ext.GraphExporter;
 import org.jgrapht.ext.MatrixExporter;
-import org.jgrapht.graph.DefaultEdge;
-import org.jgrapht.graph.DefaultWeightedEdge;
 
 import java.awt.*;
 import java.io.File;
@@ -33,6 +30,7 @@ public class AntColonyOptimisationApp extends Application{
     public static void main(String[] args) {
         long startTime   = System.currentTimeMillis();
         environment = new Environment();
+//        environment.generateEnvironment();
 
         AntColony antColony = new AntColony();
 
@@ -48,7 +46,7 @@ public class AntColonyOptimisationApp extends Application{
 //        matrixExporter.exportGraph(environment.getEnvironment(), new File("matrix.txt"));
 //        System.out.println((environment.getEnvironment().getEdge(1,3).getLength()));
 
-        launch(args);
+//        launch(args);
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
         System.out.println(totalTime);

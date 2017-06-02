@@ -14,12 +14,12 @@ class Edge extends DefaultWeightedEdge{
     private int sourceVertex;
     private double pheromoneValue;
     private double heuristicValue;
-    private double length;
+    private int length;
 
     private double probabilityForAntK;
     private double ACSComponent;
 
-    Edge(int source, int target, double length){
+    Edge(int source, int target, int length){
         super();
         this.sourceVertex = source;
         this.targetVertex = target;

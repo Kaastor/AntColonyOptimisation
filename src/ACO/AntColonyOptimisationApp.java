@@ -42,9 +42,8 @@ public class AntColonyOptimisationApp extends Application{
         System.out.println(getBestSeparablePaths());
 
 
-//        GraphExporter matrixExporter = new MatrixExporter();
-//        matrixExporter.exportGraph(environment.getEnvironment(), new File("matrix.txt"));
-//        System.out.println((environment.getEnvironment().getEdge(1,3).getLength()));
+        new GraphExport(environment.getEnvironment());
+
 
 //        launch(args);
         long endTime = System.currentTimeMillis();
@@ -116,7 +115,7 @@ public class AntColonyOptimisationApp extends Application{
                 midPointX = (nodes.get(edge.getSourceVertex()-1).x+15 + nodes.get(edge.getTargetVertex()-1).x+15) / 2;
                 midPointY = (nodes.get(edge.getSourceVertex()-1).y+15 + nodes.get(edge.getTargetVertex()-1).y+15) / 2;
                 gc.setFill(Color.BLACK);
-                gc.fillText(((Double) edge.getLength()).toString(), midPointX, midPointY);
+                gc.fillText(((Integer) edge.getLength()).toString(), midPointX, midPointY);
             }
         }
     }

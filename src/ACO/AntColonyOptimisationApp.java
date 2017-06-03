@@ -10,11 +10,7 @@ import javafx.stage.Stage;
 
 import javafx.scene.paint.Color;
 import lombok.SneakyThrows;
-import org.jgrapht.ext.GraphExporter;
-import org.jgrapht.ext.MatrixExporter;
-
 import java.awt.*;
-import java.io.File;
 import java.util.ArrayList;
 
 import static ACO.Parameters.*;
@@ -33,22 +29,24 @@ public class AntColonyOptimisationApp extends Application{
 //        environment.generateEnvironment();
 
         AntColony antColony = new AntColony();
+        for (Ant ant : antColony.getAnthill()) { ant.join(); }
 
-        for (Ant ant : antColony.getAnthill()) {
-            ant.join();
-        }
         System.out.println("Rozwiazanie - długość: " + BEST_PATH_SO_FAR_LENGTH);
         System.out.println("Rozwiazanie - ścieżki: ");
         System.out.println(getBestSeparablePaths());
 
-
-        new GraphExport(environment.getEnvironment());
-
-
 //        launch(args);
+
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        System.out.println(totalTime);
+        System.out.println("Czas wykonania: " + totalTime);
+        new GraphExport(environment.getEnvironment());
+
+        Runtime runtime = Runtime.getRuntime();
+        runtime.gc();
+        long memory = runtime.totalMemory() - runtime.freeMemory();
+        System.out.println("Użyta pamięć w bajtach: " + memory);
+        System.out.println("Użyta pamięć w megabajtach: " + bytesToMegabytes(memory));
 
         System.exit(1);
     }
@@ -118,5 +116,10 @@ public class AntColonyOptimisationApp extends Application{
                 gc.fillText(((Integer) edge.getLength()).toString(), midPointX, midPointY);
             }
         }
+    }
+
+    private static final long MEGABYTE = 1024L * 1024L;
+    public static long bytesToMegabytes(long bytes) {
+        return bytes / MEGABYTE;
     }
 }

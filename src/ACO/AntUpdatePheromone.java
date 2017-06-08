@@ -18,7 +18,6 @@ class AntUpdatePheromone {
         }
     }
 
-//    @Synchronized
     static void updateGlobalPheromone(ArrayList<Edge> solutionPath){
         if(updateBestPath(solutionPath)) {
             for (Edge edge : solutionPath) {

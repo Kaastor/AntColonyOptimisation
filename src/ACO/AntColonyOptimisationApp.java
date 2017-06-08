@@ -31,7 +31,6 @@ public class AntColonyOptimisationApp extends Application{
 //        environment.generateEnvironment();
 
         AntColony antColony = new AntColony();
-//        for (Ant ant : antColony.getAnthill()) { ant.join(); }
 
         System.out.println("Rozwiazanie - długość: " + BEST_PATH_SO_FAR_LENGTH);
         System.out.println("Rozwiazanie - ścieżki: ");
@@ -40,7 +39,7 @@ public class AntColonyOptimisationApp extends Application{
 //        launch(args);
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
-        System.out.println("Czas wykonania: " + totalTime);
+        System.out.println("Czas wykonania[ms]: " + totalTime);
         new GraphExport(environment.getEnvironment());
 
         Runtime runtime = Runtime.getRuntime();

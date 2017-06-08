@@ -45,12 +45,6 @@ class EnvironmentGenerator {
         for (int i=0; i< VERTEX_NUMBER; i++) {
            weights[i][i] = 0;
         }
-//        for (int i=0; i<VERTEX_NUMBER; i++) {
-//            for (int j = 0; j < VERTEX_NUMBER; j++) {
-//                System.out.print(weights[i][j] + ", ");
-//            }
-//            System.out.println();
-//        }
     }
 
     private void generateVertices(){

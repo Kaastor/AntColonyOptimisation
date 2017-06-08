@@ -11,6 +11,7 @@ import javafx.stage.Stage;
 import javafx.scene.paint.Color;
 import lombok.SneakyThrows;
 import java.awt.*;
+import java.io.File;
 import java.util.ArrayList;
 
 import static ACO.Parameters.*;
@@ -18,6 +19,7 @@ import static dissimlab.random.SimGenerator.generateSeed;
 
 public class AntColonyOptimisationApp extends Application{
 
+    private static File inputMatrix = new File("matrixWeights.txt");
     private SimGenerator simGenerator = new SimGenerator(generateSeed());
     private ArrayList<Point> nodes = new ArrayList<>();
     private static Environment environment;
@@ -29,14 +31,13 @@ public class AntColonyOptimisationApp extends Application{
 //        environment.generateEnvironment();
 
         AntColony antColony = new AntColony();
-        for (Ant ant : antColony.getAnthill()) { ant.join(); }
+//        for (Ant ant : antColony.getAnthill()) { ant.join(); }
 
         System.out.println("Rozwiazanie - długość: " + BEST_PATH_SO_FAR_LENGTH);
         System.out.println("Rozwiazanie - ścieżki: ");
         System.out.println(getBestSeparablePaths());
 
 //        launch(args);
-
         long endTime = System.currentTimeMillis();
         long totalTime = endTime - startTime;
         System.out.println("Czas wykonania: " + totalTime);

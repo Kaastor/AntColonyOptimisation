@@ -12,7 +12,7 @@ import static ACO.Parameters.MAX_ITERATIONS;
 
 
 @Getter @Setter
-class Ant extends Thread{
+class Ant {
 
     private int agentId;
     private int currentPosition;
@@ -29,9 +29,11 @@ class Ant extends Thread{
         visited = new ArrayList<>();
         solutionPath = new ArrayList<>();
         pathLength = 0;
+
+        antLife();
     }
 
-    public void run(){
+    private void antLife(){
         IntStream.range(1, MAX_ITERATIONS).forEach(episode -> {
             Edge nextEdge = AntNodeSelection.getNextVertex(currentPosition, visited);
 

@@ -4,6 +4,8 @@ import lombok.Getter;
 
 import org.jgrapht.graph.SimpleDirectedGraph;
 
+import java.io.File;
+
 import static ACO.Parameters.VERTEX_NUMBER;
 
 
@@ -36,6 +38,9 @@ class Environment {
         environment = new EnvironmentGenerator().generate();
     }
 
+    void generateEnvironment(File file){
+        environment = new EnvironmentGenerator().generateFromFile(file);
+    }
 
     private void addEdgesToVertices() {
         environment.addEdge(1,2, new Edge(1,2,5));

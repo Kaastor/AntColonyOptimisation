@@ -3,6 +3,7 @@ package ACO;
 
 import lombok.Synchronized;
 
+
 import java.util.ArrayList;
 
 import static ACO.Parameters.*;
@@ -17,7 +18,7 @@ class AntUpdatePheromone {
         }
     }
 
-    @Synchronized
+//    @Synchronized
     static void updateGlobalPheromone(ArrayList<Edge> solutionPath){
         if(updateBestPath(solutionPath)) {
             for (Edge edge : solutionPath) {
